@@ -208,6 +208,7 @@ Exp: Exp ASSIGNOP Exp                               { $$=nonterminal_node("Exp",
     | MINUS error %prec UMINUS                      {}
     | NOT error                                     {}
     | ID LP error RP                                { yyerrok; }
+    | ID LP Exp error                               {}
     | Exp LB error RB                               { yyerrok; }
 ;
 Args: Exp COMMA Args                                { $$=nonterminal_node("Args",@$.first_line,3,$1,$2,$3); }
