@@ -6,6 +6,4 @@ int main()
 {
     struct Complex x;
     y.image=3.5;
-    int d=10;
-
 }

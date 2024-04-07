@@ -27,7 +27,7 @@ void print_tree(struct node* mnode, int depth)  // 打印AST，depth表示深度
         }
     }
     else{
-        printf("(%d)",mnode->line);
+        printf(" (%d)",mnode->line);
     }
     printf("\n");
     print_tree(mnode->child,depth+1);
@@ -75,10 +75,10 @@ struct node* nonterminal_node(const char* name, int line, int node_num,...)  // 
     mnode->line = line;
     mnode->tokenFlag = 0;
     sscanf(name, "%s", mnode->name);
-    va_list valist;
-    va_start(valist, node_num);//初始化
+    va_list valist;// va_list表示可变参数列表类型，实际上就是一个char指针
+    va_start(valist, node_num);//初始化,获取函数参数列表中可变参数的首指针(获取函数可变参数列表)
     set_parent_brother(mnode, node_num, valist);
-    va_end(valist);
+    va_end(valist);//结束对可变参数的处理。
     return mnode;
 }
 void set_parent_brother(struct node* parent, int node_num,va_list valist)//采用左儿子右兄弟方法，使生成的AST为二叉树格式
@@ -86,7 +86,7 @@ void set_parent_brother(struct node* parent, int node_num,va_list valist)//采�
     struct node* node;
     int i=0;
     for (; i < node_num; i++) {
-        node = va_arg(valist, struct node*);//返回当前指向的参数类型，node*
+        node = va_arg(valist, struct node*);//返回当前指向的参数类型，node*,获取当前ap所指的可变参数并将并将ap指针移向下一可变参数
         if (node != NULL) break;
     }
     ++i;

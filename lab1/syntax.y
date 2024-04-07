@@ -1,6 +1,8 @@
 %{
 #include "tree.h"
 #include <stdio.h>
+
+extern int lexical_errs;
 extern int syntax_errs;
 extern int yylineno;
 extern char* yytext;
@@ -14,7 +16,7 @@ void yyerror(const char *msg) {
     if(yyerr_line==yylineno)return;
     yyerr_line=yylineno;
     syntax_errs++;
-    printf("Error type B at Line %d: %s.\n", yylineno, msg);
+    printf("Error type B at Line %d: %s.\n",yylineno,msg);
 }
 %}
 /*%define parse.error verbose*/
@@ -82,6 +84,7 @@ void yyerror(const char *msg) {
 %type <node> Exp
 %type <node> Args
 
+
 %start Program
 %right ASSIGNOP
 %left OR
@@ -142,7 +145,6 @@ ParamDec: Specifier VarDec                          { $$=nonterminal_node("Param
 ;
 /* Statements */
 CompSt: LC DefList StmtList RC                      { $$=nonterminal_node("CompSt",@$.first_line,4,$1,$2,$3,$4); }
-    /* |   LC DefList StmtList error                   {} */
 ;
 StmtList: Stmt StmtList                             { $$=nonterminal_node("StmtList",@$.first_line,2,$1,$2); }
     | /* empty */                                   { $$=NULL; }

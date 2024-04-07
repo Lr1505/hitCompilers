@@ -2,9 +2,11 @@
 #include "syntax.tab.h"
 #include "tree.h"
 extern int lexical_errs;
+extern int syntax_errs;
 void add_token_node(const char* name, enum DATATYPE datatype, const char* val);
 void lexical_error_handler(char *msg);
 int yycolumn = 1;
+extern int yyerr_line;
 extern int yydebug;
 extern YYSTYPE yylval;
 #define YY_USER_ACTION \
@@ -16,6 +18,7 @@ int yylex();
 %}
 
 %option yylineno
+
 TYPE int|float
 SEMI ;
 COMMA ,
@@ -72,10 +75,10 @@ WhiteSpace  [ \t\f\r\v]+
             else if(c!='*') meet=0;
         }
     }
-    //if(!flag) lexical_error_handler("unmatched comment \"/*\"");
+    if(!flag) {syntax_errs++;yyerr_line=yylineno;printf("Error type B at Line %d: Syntax error.\n",yylineno);}
 }
-"*/"                                { lexical_error_handler("unmatched comment"); }
     /* Inline Comments */
+"*/"                                {syntax_errs++;yyerr_line=yylineno;printf("Error type B at Line %d: Syntax error.\n",yylineno);}
 "//"                                { BEGIN(INLINE_COMMENT); }
 <INLINE_COMMENT>[^\n]*              {}
 <INLINE_COMMENT>\n                  { BEGIN(INITIAL); }
@@ -105,13 +108,13 @@ WhiteSpace  [ \t\f\r\v]+
 {ELSE}                              { add_token_node("ELSE", OTHER, NULL);return (ELSE); }
 {WHILE}                             { add_token_node("WHILE", OTHER, NULL);return (WHILE); }
 {INT}                               { add_token_node("INT", TYPE_INT, yytext);return (INT); }
-{INTERROR}                          { }
+{INTERROR}                          { lexical_error_handler("illegal int");}
 {OCT}                               { add_token_node("INT", TYPE_OCT, yytext);return (INT); }
-{OCTERROR}                          { }
+{OCTERROR}                          { lexical_error_handler("illegal octal number");}
 {HEX}                               { add_token_node("INT", TYPE_HEX, yytext);return (INT); }
-{HEXERROR}                          { }
+{HEXERROR}                          { lexical_error_handler("illegal hexadecimal number");}
 {FLOAT}                             { add_token_node("FLOAT", TYPE_FLOAT, yytext);return (FLOAT); }
-{FLOATERROR}                        { }
+{FLOATERROR}                        { lexical_error_handler("illegal floating point number");}
 {ID}                                { add_token_node("ID", TYPE_ID, yytext);return (ID); }
 <<EOF>>                             { return 0; }
 "\n"                                { yycolumn = 1; }
@@ -121,8 +124,10 @@ WhiteSpace  [ \t\f\r\v]+
 %%
 
 void lexical_error_handler(char *msg){
+    if(yyerr_line==yylineno)return;
+    yyerr_line=yylineno;
     lexical_errs++;
-    printf("Error type A at Line %d: %s %s.\n", yylineno, msg ,yytext);
+    printf("Error type A at Line %d: %s \"%s\".\n", yylineno, msg ,yytext);
 }
 void add_token_node(const char* name, enum DATATYPE datatype, const char* val)
 {
