@@ -1,20 +1,20 @@
 
 A-10.cmm
 Error type 10 at Line 36: Illegal use of "[]"
+Error type 5 at Line 36: Type mismatched for assignment.
 
 A-11.cmm
 Error type 11 at Line 48: "px" is not a function.
 
 A-12.cmm
 Error type 12 at Line 63: Array index is not an integer.
-2:Error type 5 at Line 63: Type mismatched for assignment.
 
 A-13.cmm
 Error type 13 at Line 58: Illegal use of ".".
-2:Error type 5 at Line 58: Type mismatched for assignment.
 
 A-14.cmm
 Error type 14 at Line 34: Non-existent field "hight".
+Error type 5 at Line 34: Type mismatched for assignment.
 
 A-15.cmm
 Error type 15 at Line 2: illegal initialization.
@@ -27,22 +27,20 @@ Error type 17 at Line 5: Undefined structure "PersonInfo".
 
 A-18.cmm
 Error type 7 at Line 13: Type mismatched for operands.
-Error type 9 at Line 13: Type mismatched for arguments.
+1:Error type 9 at Line 13: Type mismatched for arguments.
 
 A-19.cmm
 Error type 12 at Line 13: Array index is not an integer.
-Error type 9 at Line 13: Type mismatched for arguments.
+1:Error type 9 at Line 13: Type mismatched for arguments.
 
 A-1.cmm
 Error type 1 at Line 18: Undefined variable "p2_y".
-Error type 8 at Line 18: Type mismatched for return.
 
 A-20.cmm
 
 A-2.cmm
 Error type 2 at Line 33: Undefined function "cos".
 Error type 7 at Line 33: Type mismatched for operands.
-Error type 8 at Line 33: Type mismatched for return.
 
 A-3.cmm
 Error type 3 at Line 17: Redefined variable "size".
@@ -58,26 +56,24 @@ Error type 6 at Line 33: The left-hand side of an assignment must be a variable.
 
 A-7.cmm
 Error type 7 at Line 35: Type mismatched for operands.
+Error type 5 at Line 35: Type mismatched for assignment.
 
 A-8.cmm
-Error type 8 at Line 29: Type mismatched for return.
 
 A-9.cmm
-Error type 9 at Line 49: Type mismatched for arguments.
+1:Error type 9 at Line 49: Type mismatched for arguments.
 
 B-1.cmm
 Error type 15 at Line 3: illegal initialization.
 Error type 5 at Line 9: Type mismatched for assignment.
-Error type 8 at Line 12: Type mismatched for return.
-Error type 9 at Line 91: The number of arguments is wrong.
+3:Error type 9 at Line 91: The number of arguments is wrong.
 Error type 11 at Line 94: "res" is not a function.
+Error type 5 at Line 94: Type mismatched for assignment.
 
 B-2.cmm
 Error type 14 at Line 8: Non-existent field "_x".
-Error type 7 at Line 8: Type mismatched for operands.
-Error type 7 at Line 8: Type mismatched for operands.
-Error type 7 at Line 8: Type mismatched for operands.
 Error type 7 at Line 17: Type mismatched for operands.
+Error type 5 at Line 17: Type mismatched for assignment.
 Error type 17 at Line 32: Undefined structure "Mass".
 
 C-1.cmm
@@ -92,9 +88,7 @@ Error type B at Line 97: syntax error, unexpected SEMI, expecting LC.
 D-2.cmm
 
 D-3.cmm
-Error type 9 at Line 51: Type mismatched for arguments.
-Error type 7 at Line 51: Type mismatched for operands.
-Error type 8 at Line 54: Type mismatched for return.
+2:Error type 9 at Line 51: Type mismatched for arguments.
 
 E-1.cmm
 Error type B at Line 43: syntax error, unexpected SEMI, expecting LC.
@@ -103,14 +97,10 @@ Error type B at Line 70: syntax error, unexpected SEMI, expecting LC.
 
 E-2.cmm
 Error type 1 at Line 119: Undefined variable "i".
-Error type 8 at Line 119: Type mismatched for return.
 
 E-3.cmm
-Error type 9 at Line 51: Type mismatched for arguments.
-Error type 7 at Line 51: Type mismatched for operands.
-Error type 8 at Line 54: Type mismatched for return.
-Error type 9 at Line 73: Type mismatched for arguments.
-Error type 9 at Line 74: Type mismatched for arguments.
+2:Error type 9 at Line 51: Type mismatched for arguments.
+1:Error type 9 at Line 73: Type mismatched for arguments.
+1:Error type 9 at Line 74: Type mismatched for arguments.
 
 test1
-Error type 1 at Line 4: Undefined variable "j".

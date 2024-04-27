@@ -47,7 +47,7 @@ FieldList Def_in_structure(Node node)/*, FieldList temp_field, FieldList head_fi
         {
             if(semantic_line==node->line)
                 printf("Error type 15 at Line %d: Redefined field \"%s\".\n",node->line,p->f->name);
-            semantic_line=node->line;
+            
         }
         else
         {
@@ -123,7 +123,7 @@ Type Specifier(Node node)
             if(p == NULL || p->f->type->kind != STRUCTURE)
             {
                         printf("Error type 17 at Line %d: Undefined structure \"%s\".\n", node->line, struct_specifier->child->bro->child->data.var_ID);
-                semantic_line=node->line;
+                
                 return NULL;
             }
             else if(p->f->type != NULL)
@@ -149,7 +149,7 @@ Type Specifier(Node node)
                 if(search_s_table(p))
                 {
                                 printf("Error type 16 at Line %d: Duplicated name \"%s\".\n",node->line,struct_specifier->child->bro->child->data.var_ID);
-                    semantic_line=node->line;
+                    
                     return NULL;
                 }
                 def_list = struct_specifier->child->bro->bro->bro;
@@ -236,6 +236,7 @@ struct Symbol_table_item *VarDec(Node node, Type type)
         VarDec_child_1 = VarDec_child_1->child;
     }
     p->f->name=VarDec_child_1->data.var_ID;
+    //printf("%s",VarDec_child_1->data.var_ID);
     VarDec_child_1 = node->child;
     //基本类型
     if(strcmp(VarDec_child_1->name, "ID")==0)
@@ -318,8 +319,8 @@ Type Exp(Node node)
             //左值三种情况：ID、Exp LB Exp RB、Exp DOT ID
             if(node->child->child->bro == NULL && strcmp(node->child->child->name,"ID")!=0)			// 1个子节点
             {
-                        printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
-                semantic_line=node->line;
+                printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
+
                 return NULL;
             }
             else if(node->child->child->bro != NULL && node->child->child->bro->bro != NULL && node->child->child->bro->bro->bro == NULL) //3个子节点
@@ -327,7 +328,7 @@ Type Exp(Node node)
                 if(!(strcmp(node->child->child->name,"Exp")==0 && strcmp(node->child->child->bro->name,"DOT")==0 && strcmp(node->child->child->bro->bro->name,"ID")==0))
                 {
                                 printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
-                    semantic_line=node->line;
+                    
                     return NULL;
                 }
             }
@@ -339,14 +340,14 @@ Type Exp(Node node)
                      strcmp(node->child->child->bro->bro->bro->name,"RB")==0))
                 {
                                 printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
-                    semantic_line=node->line;
+                    
                     return NULL;
                 }
             }
             if(check_type(type_1, type_3)==0 && semantic_line != node->line)
             {
                         printf("Error type 5 at Line %d: Type mismatched for assignment.\n", node->line);
-                semantic_line=node->line;
+                
                 return NULL;
             }
             else
@@ -359,8 +360,8 @@ Type Exp(Node node)
             Type type_3 = Exp(node->child->bro->bro);
             if(check_type(type_1, type_3)==0)
             {
-                        printf("Error type 7 at Line %d: Type mismatched for operands.\n", node->line);
-                semantic_line=node->line;
+                if(semantic_line==node->line)
+                    printf("Error type 7 at Line %d: Type mismatched for operands.\n", node->line);
                 return NULL;
             }
             else
@@ -380,7 +381,7 @@ Type Exp(Node node)
             if(check_type(type_1, type_3)==0)
             {
                         printf("Error type 7 at Line %d: Type mismatched for operands.\n", node->line);
-                semantic_line=node->line;
+                
                 return NULL;
             }
             else
@@ -399,13 +400,13 @@ Type Exp(Node node)
             if(child_1_type != NULL && child_1_type->kind != ARRAY)
             {
                         printf("Error type 10 at Line %d: Illegal use of \"[]\"\n",node->line);
-                semantic_line=node->line;
+                
                 return NULL;
             }
             if(child_3_type->kind != BASIC || child_3_type->u.basic == VAR_FLOAT)
             {
                         printf("Error type 12 at Line %d: Array index is not an integer.\n",node->line);
-                semantic_line=node->line;
+                
                 return NULL;
             }
 
@@ -420,7 +421,7 @@ Type Exp(Node node)
             if(stru->kind != STRUCTURE)
             {
                         printf("Error type 13 at Line %d: Illegal use of \".\".\n",node->line);
-                semantic_line=node->line;
+                
                 return NULL;
             }
             Node id = node->child->bro->bro;
@@ -435,7 +436,7 @@ Type Exp(Node node)
                 temp=temp->tail;
             }
                 printf("Error type 14 at Line %d: Non-existent field \"%s\".\n",node->line,id_name);
-            semantic_line=node->line;
+            
             return NULL;
         }
 
@@ -452,7 +453,7 @@ Type Exp(Node node)
             if(temp == NULL)
             {
                         printf("Error type 1 at Line %d: Undefined variable \"%s\".\n",node->line,node->child->data.var_ID);
-                semantic_line=node->line;
+                
                 return NULL;
             }
             else
@@ -480,14 +481,14 @@ Type Exp(Node node)
             struct Symbol_table_item *func_item = find_items_s_table(id->data.var_ID);
             if(func_item == NULL)
             {
-                        printf("Error type 2 at Line %d: Undefined function \"%s\".\n",node->line,id->data.var_ID);
-                semantic_line=node->line;
+                printf("Error type 2 at Line %d: Undefined function \"%s\".\n",node->line,id->data.var_ID);
+                
                 return NULL;
             }
             if(func_item->f->type->kind != FUNCTION)
             {
-                        printf("Error type 11 at Line %d: \"%s\" is not a function.\n",node->line, id->data.var_ID);
-                semantic_line=node->line;
+                printf("Error type 11 at Line %d: \"%s\" is not a function.\n",node->line, id->data.var_ID);
+                
                 return NULL;
             }
 
@@ -503,8 +504,7 @@ Type Exp(Node node)
                     Type args_type = Exp(args->child);
                     if(real_args_type != NULL && !check_type(args_type,real_args_type->type))
                     {
-                                        printf("Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
-                        semantic_line=node->line;
+                        printf("1:Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
                         return NULL;
                     }
                     args = args->child->bro->bro;
@@ -514,15 +514,13 @@ Type Exp(Node node)
                 Type args_type = Exp(args->child);
                 if(real_args_type != NULL && !check_type(args_type,real_args_type->type))
                 {
-                                printf("Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
-                    semantic_line=node->line;
+                    printf("2:Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
                     return NULL;
                 }
 
                 if(param_num != func_item->f->type->u.function.paramNum)
                 {
-                                printf("Error type 9 at Line %d: The number of arguments is wrong.\n",node->line);
-                    semantic_line=node->line;
+                    printf("3:Error type 9 at Line %d: The number of arguments is wrong.\n",node->line);
                     return NULL;
                 }
             }
@@ -546,7 +544,7 @@ struct Symbol_table_item *Dec(Node node, Type type)
         if(check_type(p->f->type, exp_type)==0) {
             if (node->line == semantic_line)
                 printf("2:Error type 5 at Line %d: Type mismatched for assignment.\n", node->line);
-            semantic_line=node->line;
+            
         }
         //判断Exp和VarDec类型相等
     }
@@ -567,28 +565,31 @@ void Def(Node node)
     */
     struct Symbol_table_item *p = NULL;
     //有逗号有变量则循环填表
-    while(Dec_List->child->bro != NULL)
+    while(Dec_List->child!= NULL)
     {
         p=Dec(Dec_List->child,spe_type);
+        //printf("1");
         if(search_s_table(p)) {
-                printf("Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
-            semantic_line=node->line;
+                printf("1Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
         }
         else
         {
-            //printf("[Def]添加局部变量: %s\n",p->f->name);
+            printf("[Def]添加局部变量: %s\n",p->f->name);
             add_s_table(p);
-            //print_hash_table();
+            print_hash_table();
         }
-
-        Dec_List = Dec_List->child->bro->bro;
+        if (Dec_List->child->bro)
+            Dec_List = Dec_List->child->bro->bro;
+        else
+            break;
+        //Dec_List = Dec_List->child->bro;
     }
 
     p=Dec(Dec_List->child,spe_type);
     //printf("%d\n",p->symbol_depth);
     if(search_s_table(p)) {
         if (node->line == semantic_line)
-            printf("Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
+            printf("2Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
     }
     else
     {
@@ -620,7 +621,8 @@ void Stmt(Node node, Type function_type)
         Type ret_type = Exp(node->child->bro);
 
         if(!check_type(function_type, ret_type))
-            printf("Error type 8 at Line %d: Type mismatched for return.\n",node->line);
+            if(semantic_line==node->line)
+                printf("Error type 8 at Line %d: Type mismatched for return.\n",node->line);
     }
     else if(strcmp(node->child->name,"IF")==0)
     {
@@ -728,7 +730,7 @@ void ExtDef(Node node)
         {
             p=VarDec(ExtDec_List->child,spe_type);
             if(search_s_table(p))
-                printf("Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
+                printf("3Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
             else
             {
                 //printf("[ExtDef]添加全局变量\n");
@@ -741,7 +743,7 @@ void ExtDef(Node node)
 
         p=VarDec(ExtDec_List->child,spe_type);
         if(search_s_table(p))
-            printf("Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
+            printf("4Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
         else
         {
             //printf("[ExtDef]添加全局变量\n");
@@ -787,7 +789,7 @@ void ExtDef(Node node)
                 Type spe_type_1 = Specifier(Param_Dec->child);
                 pp=VarDec(Param_Dec->child->bro,spe_type_1);
                 if(search_s_table(pp))
-                    printf("Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
+                    printf("5Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
                 else
                 {
                     //printf("[ExtDef]添加函数形参\n");
@@ -812,7 +814,7 @@ void ExtDef(Node node)
             Type spe_type_1 = Specifier(Param_Dec->child);
             pp=VarDec(Param_Dec->child->bro,spe_type_1);
             if(search_s_table(pp))
-                printf("Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
+                printf("6Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
             else
             {
                 //printf("[ExtDef]添加函数形参\n");
