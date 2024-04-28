@@ -731,7 +731,7 @@ void ExtDef(Node node)
         {
             p=VarDec(ExtDec_List->child,spe_type);
             if(search_s_table(p))
-                printf("3Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
+                printf("Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
             else
             {
                 //printf("[ExtDef]添加全局变量\n");
@@ -744,7 +744,7 @@ void ExtDef(Node node)
 
         p=VarDec(ExtDec_List->child,spe_type);
         if(search_s_table(p))
-            printf("4Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
+            printf("Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
         else
         {
             //printf("[ExtDef]添加全局变量\n");
@@ -790,7 +790,7 @@ void ExtDef(Node node)
                 Type spe_type_1 = Specifier(Param_Dec->child);
                 pp=VarDec(Param_Dec->child->bro,spe_type_1);
                 if(search_s_table(pp))
-                    printf("5Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
+                    printf("Error type 3 at Line %d: Redefined variable \"%s\".\n",node->line,p->f->name);
                 else
                 {
                     //printf("[ExtDef]添加函数形参\n");
