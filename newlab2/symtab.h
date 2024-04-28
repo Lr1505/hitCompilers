@@ -44,13 +44,14 @@ struct FieldList_
 };
 
 void print_hash_table();
-unsigned int hash_pjw(char* name);
+unsigned int hash(char* name);
 struct Symbol_table_item *find_items_s_table(char *name);
 int search_s_table(struct Symbol_table_item *p);
 void add_s_table(struct Symbol_table_item *p);
 void del_s_table(struct Symbol_table_item *p);
 int check_type(Type type1, Type type2);
-
+int search_struct_table(struct Symbol_table_item *p);
+void add_struct_table(struct Symbol_table_item *p);
 
 #endif //C__COMPLIER_HASH_H
 //

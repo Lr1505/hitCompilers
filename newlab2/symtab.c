@@ -70,11 +70,13 @@ struct Symbol_table_item *find_items_s_table(char *name)
 int search_s_table(struct Symbol_table_item *p)
 {
     int index = hash(p->f->name);
+//printf("%d",index);
     if(s_table[index] == NULL)
         return 0;
     else
     {
         struct Symbol_table_item* temp = s_table[index];
+        //printf("%d,%d\n", temp->symbol_depth,cur_stack_deep);
         while(temp != NULL)
         {
             if(strcmp(temp->f->name,p->f->name)==0 && temp->symbol_depth == cur_stack_deep)

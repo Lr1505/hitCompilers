@@ -8,8 +8,10 @@ Error type 11 at Line 48: "px" is not a function.
 
 A-12.cmm
 Error type 12 at Line 63: Array index is not an integer.
+Error type 12 at Line 63: Array index is not an integer.
 
 A-13.cmm
+Error type 13 at Line 58: Illegal use of ".".
 Error type 13 at Line 58: Illegal use of ".".
 
 A-14.cmm
@@ -35,15 +37,18 @@ Error type 12 at Line 13: Array index is not an integer.
 
 A-1.cmm
 Error type 1 at Line 18: Undefined variable "p2_y".
+Error type 8 at Line 18: Type mismatched for return.
 
 A-20.cmm
+Error type 15 at Line 5: Redefined field "sia".
 
 A-2.cmm
 Error type 2 at Line 33: Undefined function "cos".
 Error type 7 at Line 33: Type mismatched for operands.
+Error type 8 at Line 33: Type mismatched for return.
 
 A-3.cmm
-Error type 3 at Line 17: Redefined variable "size".
+6Error type 3 at Line 17: Redefined variable "size".
 
 A-4.cmm
 Error type 4 at Line 32: Redefined function "top".
@@ -59,6 +64,7 @@ Error type 7 at Line 35: Type mismatched for operands.
 Error type 5 at Line 35: Type mismatched for assignment.
 
 A-8.cmm
+Error type 8 at Line 29: Type mismatched for return.
 
 A-9.cmm
 1:Error type 9 at Line 49: Type mismatched for arguments.
@@ -66,6 +72,7 @@ A-9.cmm
 B-1.cmm
 Error type 15 at Line 3: illegal initialization.
 Error type 5 at Line 9: Type mismatched for assignment.
+Error type 8 at Line 12: Type mismatched for return.
 3:Error type 9 at Line 91: The number of arguments is wrong.
 Error type 11 at Line 94: "res" is not a function.
 Error type 5 at Line 94: Type mismatched for assignment.
@@ -89,6 +96,7 @@ D-2.cmm
 
 D-3.cmm
 2:Error type 9 at Line 51: Type mismatched for arguments.
+Error type 8 at Line 54: Type mismatched for return.
 
 E-1.cmm
 Error type B at Line 43: syntax error, unexpected SEMI, expecting LC.
@@ -96,11 +104,69 @@ Error type B at Line 68: syntax error, unexpected SEMI, expecting LC.
 Error type B at Line 70: syntax error, unexpected SEMI, expecting LC.
 
 E-2.cmm
+1Error type 3 at Line 109: Redefined variable "i".
 Error type 1 at Line 119: Undefined variable "i".
+Error type 8 at Line 119: Type mismatched for return.
 
 E-3.cmm
 2:Error type 9 at Line 51: Type mismatched for arguments.
+Error type 8 at Line 54: Type mismatched for return.
 1:Error type 9 at Line 73: Type mismatched for arguments.
 1:Error type 9 at Line 74: Type mismatched for arguments.
 
+extra3
+
+extra4
+1Error type 3 at Line 9: Redefined variable "i".
+
 test1
+Error type 1 at Line 4: Undefined variable "j".
+
+test10
+Error type 10 at Line 4: Illegal use of "[]"
+
+test11
+Error type 11 at Line 4: "i" is not a function.
+
+test12
+Error type 12 at Line 4: Array index is not an integer.
+Error type 5 at Line 4: Type mismatched for assignment.
+
+test13
+Error type 13 at Line 9: Illegal use of ".".
+
+test14
+Error type 14 at Line 9: Non-existent field "n".
+
+test15
+Error type 15 at Line 4: Redefined field "x".
+
+test16
+Error type 16 at Line 6: Duplicated name "Position".
+
+test17
+Error type 17 at Line 3: Undefined structure "Position".
+
+test2
+Error type 2 at Line 4: Undefined function "inc".
+
+test3
+1Error type 3 at Line 4: Redefined variable "i".
+
+test4
+Error type 5 at Line 4: Type mismatched for assignment.
+
+test5
+Error type 4 at Line 6: Redefined function "func".
+
+test6
+Error type 6 at Line 4: The left-hand side of an assignment must be a variable.
+
+test7
+Error type 7 at Line 4: Type mismatched for operands.
+
+test8
+Error type 8 at Line 4: Type mismatched for return.
+
+test9
+3:Error type 9 at Line 8: The number of arguments is wrong.

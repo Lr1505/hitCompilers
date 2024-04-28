@@ -43,16 +43,16 @@ FieldList Def_in_structure(Node node)/*, FieldList temp_field, FieldList head_fi
     while(Dec_List->child->bro != NULL)
     {
         p=Dec_in_structure(Dec_List->child,spe_type);
-        if(search_s_table(p) )
+        //printf("%s %d",p->f->name,p->f->type->kind);
+        //print_hash_table();
+        if(search_struct_table(p))
         {
-            if(semantic_line==node->line)
                 printf("Error type 15 at Line %d: Redefined field \"%s\".\n",node->line,p->f->name);
-            
         }
         else
         {
             //printf("[Def]添加结构体变量\n");
-            add_s_table(p);
+            add_struct_table(p);
             //print_hash_table();
         }
         //与普通def的区别在于：需要把这些结构体变量串起来，类似函数形参
@@ -69,16 +69,17 @@ FieldList Def_in_structure(Node node)/*, FieldList temp_field, FieldList head_fi
         Dec_List = Dec_List->child->bro->bro;
     }
 
-
     p=Dec_in_structure(Dec_List->child,spe_type);
-    if(search_s_table(p))
+   // printf("%s %d",p->f->name,p->f->type->kind);
+    //print_hash_table();
+    if(search_struct_table(p))
     {
         printf("Error type 15 at Line %d: Redefined field \"%s\".\n",node->line,p->f->name);
     }
     else
     {
         //printf("[Def]添加结构体变量\n");
-        add_s_table(p);
+        add_struct_table(p);
         //print_hash_table();
     }
 
@@ -108,7 +109,7 @@ Type Specifier(Node node)
     }
     else
     {
-        /*	
+        /*
             StructSpecifier -> STRUCT OptTag LC DefList RC
             StructSpecifier -> STRUCT Tag
         */
@@ -119,12 +120,11 @@ Type Specifier(Node node)
         Node struct_specifier = node->child;
         if(strcmp(struct_specifier->child->bro->name,"Tag")==0)
         {
+            //print_hash_table();
             struct Symbol_table_item *p = find_items_s_table(struct_specifier->child->bro->child->data.var_ID);
             if(p == NULL || p->f->type->kind != STRUCTURE)
             {
-                        printf("Error type 17 at Line %d: Undefined structure \"%s\".\n", node->line, struct_specifier->child->bro->child->data.var_ID);
-                
-                return NULL;
+                printf("Error type 17 at Line %d: Undefined structure \"%s\".\n", node->line, struct_specifier->child->bro->child->data.var_ID);
             }
             else if(p->f->type != NULL)
                 return p->f->type;
@@ -148,9 +148,8 @@ Type Specifier(Node node)
                 p->f->type = spe_type;
                 if(search_s_table(p))
                 {
-                                printf("Error type 16 at Line %d: Duplicated name \"%s\".\n",node->line,struct_specifier->child->bro->child->data.var_ID);
-                    
-                    return NULL;
+                    printf("Error type 16 at Line %d: Duplicated name \"%s\".\n",node->line,struct_specifier->child->bro->child->data.var_ID);
+
                 }
                 def_list = struct_specifier->child->bro->bro->bro;
 
@@ -158,7 +157,6 @@ Type Specifier(Node node)
             else
             {
                 def_list = struct_specifier->child->bro->bro;
-
                 strcat(anonymous_struct_name,"1");
                 p->f->name = anonymous_struct_name;
                 spe_type->u.structure_.name = anonymous_struct_name;
@@ -295,20 +293,22 @@ Type Exp(Node node)
             | Exp RELOP Exp			1
             | Exp PLUS Exp			1
             | Exp MINUS Exp			1
-            | Exp STAR Exp			1	
+            | Exp STAR Exp			1
             | Exp DIV Exp			1
             | LP Exp RP				1
             | MINUS Exp				1
-            | NOT Exp				1	
+            | NOT Exp				1
             | ID LP Args RP			1
-            | ID LP RP				1	
+            | ID LP RP				1
             | Exp LB Exp RB			1
             | Exp DOT ID
             | ID					1
-            | INT					1	
+            | INT					1
             | FLOAT					1
     */
 //printf("[Exp]\n");
+//print_hash_table();
+//printf("%s\n",node->child->name);
     if(strcmp(node->child->name, "Exp")==0)
     {
         Type type_1 = Exp(node->child);
@@ -327,8 +327,7 @@ Type Exp(Node node)
             {
                 if(!(strcmp(node->child->child->name,"Exp")==0 && strcmp(node->child->child->bro->name,"DOT")==0 && strcmp(node->child->child->bro->bro->name,"ID")==0))
                 {
-                                printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
-                    
+                    printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
                     return NULL;
                 }
             }
@@ -339,15 +338,13 @@ Type Exp(Node node)
                      strcmp(node->child->child->bro->bro->name,"Exp")==0 &&
                      strcmp(node->child->child->bro->bro->bro->name,"RB")==0))
                 {
-                                printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
-                    
+                    printf("Error type 6 at Line %d: The left-hand side of an assignment must be a variable.\n", node->line);
                     return NULL;
                 }
             }
             if(check_type(type_1, type_3)==0 && semantic_line != node->line)
             {
-                        printf("Error type 5 at Line %d: Type mismatched for assignment.\n", node->line);
-                
+                printf("Error type 5 at Line %d: Type mismatched for assignment.\n", node->line);
                 return NULL;
             }
             else
@@ -381,7 +378,7 @@ Type Exp(Node node)
             if(check_type(type_1, type_3)==0)
             {
                         printf("Error type 7 at Line %d: Type mismatched for operands.\n", node->line);
-                
+
                 return NULL;
             }
             else
@@ -399,14 +396,14 @@ Type Exp(Node node)
                 return NULL;
             if(child_1_type != NULL && child_1_type->kind != ARRAY)
             {
-                        printf("Error type 10 at Line %d: Illegal use of \"[]\"\n",node->line);
-                
+                printf("Error type 10 at Line %d: Illegal use of \"[]\"\n",node->line);
+
                 return NULL;
             }
             if(child_3_type->kind != BASIC || child_3_type->u.basic == VAR_FLOAT)
             {
                         printf("Error type 12 at Line %d: Array index is not an integer.\n",node->line);
-                
+
                 return NULL;
             }
 
@@ -421,7 +418,7 @@ Type Exp(Node node)
             if(stru->kind != STRUCTURE)
             {
                         printf("Error type 13 at Line %d: Illegal use of \".\".\n",node->line);
-                
+
                 return NULL;
             }
             Node id = node->child->bro->bro;
@@ -436,7 +433,7 @@ Type Exp(Node node)
                 temp=temp->tail;
             }
                 printf("Error type 14 at Line %d: Non-existent field \"%s\".\n",node->line,id_name);
-            
+
             return NULL;
         }
 
@@ -449,11 +446,13 @@ Type Exp(Node node)
         }
         if(strcmp(node->child->name, "ID")==0 && node->child->bro == NULL)
         {
+            //printf("%s\n",node->child->data.var_ID);
             struct Symbol_table_item *temp = find_items_s_table(node->child->data.var_ID);
+            //printf("%d",temp->f->type->u.basic);
             if(temp == NULL)
             {
-                        printf("Error type 1 at Line %d: Undefined variable \"%s\".\n",node->line,node->child->data.var_ID);
-                
+                printf("Error type 1 at Line %d: Undefined variable \"%s\".\n",node->line,node->child->data.var_ID);
+                semantic_line=node->line;
                 return NULL;
             }
             else
@@ -482,13 +481,13 @@ Type Exp(Node node)
             if(func_item == NULL)
             {
                 printf("Error type 2 at Line %d: Undefined function \"%s\".\n",node->line,id->data.var_ID);
-                
+
                 return NULL;
             }
             if(func_item->f->type->kind != FUNCTION)
             {
                 printf("Error type 11 at Line %d: \"%s\" is not a function.\n",node->line, id->data.var_ID);
-                
+
                 return NULL;
             }
 
@@ -544,7 +543,7 @@ struct Symbol_table_item *Dec(Node node, Type type)
         if(check_type(p->f->type, exp_type)==0) {
             if (node->line == semantic_line)
                 printf("2:Error type 5 at Line %d: Type mismatched for assignment.\n", node->line);
-            
+
         }
         //判断Exp和VarDec类型相等
     }
@@ -557,7 +556,9 @@ void Def(Node node)
     /*
         Def -> Specifier DecList SEMI
     */
+    //printf("Def");
     Type spe_type = Specifier(node->child);
+    //printf("return[Spec]");
     Node Dec_List = node->child->bro;
     /*
         DecList -> Dec
@@ -574,9 +575,9 @@ void Def(Node node)
         }
         else
         {
-            printf("[Def]添加局部变量: %s\n",p->f->name);
+            //printf("[Def]添加局部变量: %s\n",p->f->name);
             add_s_table(p);
-            print_hash_table();
+            //print_hash_table();
         }
         if (Dec_List->child->bro)
             Dec_List = Dec_List->child->bro->bro;
@@ -621,8 +622,7 @@ void Stmt(Node node, Type function_type)
         Type ret_type = Exp(node->child->bro);
 
         if(!check_type(function_type, ret_type))
-            if(semantic_line==node->line)
-                printf("Error type 8 at Line %d: Type mismatched for return.\n",node->line);
+            printf("Error type 8 at Line %d: Type mismatched for return.\n",node->line);
     }
     else if(strcmp(node->child->name,"IF")==0)
     {
@@ -677,6 +677,7 @@ void CompSt(Node node, Type function_type)
     {
         //printf("[CompSt]DefList\n");
         Def(CompSt_child_2->child);
+        //printf("from [Def]");
         CompSt_child_2 = CompSt_child_2->child->bro;
     }
     /*
