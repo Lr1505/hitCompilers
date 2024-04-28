@@ -47,7 +47,7 @@ FieldList Def_in_structure(Node node)/*, FieldList temp_field, FieldList head_fi
         //print_hash_table();
         if(search_struct_table(p))
         {
-                printf("Error type 15 at Line %d: Redefined field \"%s\".\n",node->line,p->f->name);
+            printf("Error type 15 at Line %d: Redefined field \"%s\".\n",node->line,p->f->name);
         }
         else
         {
@@ -70,7 +70,7 @@ FieldList Def_in_structure(Node node)/*, FieldList temp_field, FieldList head_fi
     }
 
     p=Dec_in_structure(Dec_List->child,spe_type);
-   // printf("%s %d",p->f->name,p->f->type->kind);
+    // printf("%s %d",p->f->name,p->f->type->kind);
     //print_hash_table();
     if(search_struct_table(p))
     {
@@ -377,7 +377,7 @@ Type Exp(Node node)
             Type type_3 = Exp(node->child->bro->bro);
             if(check_type(type_1, type_3)==0)
             {
-                        printf("Error type 7 at Line %d: Type mismatched for operands.\n", node->line);
+                printf("Error type 7 at Line %d: Type mismatched for operands.\n", node->line);
 
                 return NULL;
             }
@@ -402,7 +402,7 @@ Type Exp(Node node)
             }
             if(child_3_type->kind != BASIC || child_3_type->u.basic == VAR_FLOAT)
             {
-                        printf("Error type 12 at Line %d: Array index is not an integer.\n",node->line);
+                printf("Error type 12 at Line %d: Array index is not an integer.\n",node->line);
 
                 return NULL;
             }
@@ -417,7 +417,7 @@ Type Exp(Node node)
                 return NULL;
             if(stru->kind != STRUCTURE)
             {
-                        printf("Error type 13 at Line %d: Illegal use of \".\".\n",node->line);
+                printf("Error type 13 at Line %d: Illegal use of \".\".\n",node->line);
 
                 return NULL;
             }
@@ -432,7 +432,7 @@ Type Exp(Node node)
                     return temp->type;
                 temp=temp->tail;
             }
-                printf("Error type 14 at Line %d: Non-existent field \"%s\".\n",node->line,id_name);
+            printf("Error type 14 at Line %d: Non-existent field \"%s\".\n",node->line,id_name);
 
             return NULL;
         }
@@ -503,7 +503,7 @@ Type Exp(Node node)
                     Type args_type = Exp(args->child);
                     if(real_args_type != NULL && !check_type(args_type,real_args_type->type))
                     {
-                        printf("1:Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
+                        printf("Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
                         return NULL;
                     }
                     args = args->child->bro->bro;
@@ -513,13 +513,13 @@ Type Exp(Node node)
                 Type args_type = Exp(args->child);
                 if(real_args_type != NULL && !check_type(args_type,real_args_type->type))
                 {
-                    printf("2:Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
+                    printf("Error type 9 at Line %d: Type mismatched for arguments.\n",node->line);
                     return NULL;
                 }
 
                 if(param_num != func_item->f->type->u.function.paramNum)
                 {
-                    printf("3:Error type 9 at Line %d: The number of arguments is wrong.\n",node->line);
+                    printf("Error type 9 at Line %d: The number of arguments is wrong.\n",node->line);
                     return NULL;
                 }
             }
@@ -571,7 +571,7 @@ void Def(Node node)
         p=Dec(Dec_List->child,spe_type);
         //printf("1");
         if(search_s_table(p)) {
-                printf("1Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
+            printf("Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
         }
         else
         {
@@ -590,7 +590,7 @@ void Def(Node node)
     //printf("%d\n",p->symbol_depth);
     if(search_s_table(p)) {
         if (node->line == semantic_line)
-            printf("2Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
+            printf("Error type 3 at Line %d: Redefined variable \"%s\".\n", node->line, p->f->name);
     }
     else
     {

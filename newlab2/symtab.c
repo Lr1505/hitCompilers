@@ -34,7 +34,29 @@ void print_hash_table()
     }
     printf("---------------end----------------\n");
 }
-
+void print_struct_table()
+{
+    printf("---------------hash_struct_table----------------\n");
+    for(int i=0;i<HASH_TABLE_SIZE;i++)
+    {
+        if(struct_table[i] != NULL)
+        {
+            printf("[%d]  ",i);
+            struct Symbol_table_item *temp=struct_table[i];
+            int num=0;
+            while(temp!=NULL)
+            {
+                if(num == 10)
+                    break;
+                printf("%s %d -> ",temp->f->name, temp->symbol_depth);
+                temp=temp->next_hash_item;
+                num++;
+            }
+            printf("\n");
+        }
+    }
+    printf("---------------end----------------\n");
+}
 unsigned int hash(char* name)
 {
     unsigned int val = 0, i;
@@ -89,8 +111,11 @@ int search_s_table(struct Symbol_table_item *p)
             }
             else if(strcmp(temp->f->name,p->f->name)==0 && temp->symbol_depth != cur_stack_deep)
             {
+                //printf("2\n");
+                //printf("%s,%d,%d\n",temp->f->name,temp->f->type->kind,STRUCTURE);
                 if(temp->f->type->kind == STRUCTURE)
-                    return 1;
+                    //printf("3\n");
+                    return 0;
             }
             temp = temp->next_hash_item;
         }

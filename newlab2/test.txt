@@ -1,123 +1,8 @@
 
-A-10.cmm
-Error type 10 at Line 36: Illegal use of "[]"
-Error type 5 at Line 36: Type mismatched for assignment.
-
-A-11.cmm
-Error type 11 at Line 48: "px" is not a function.
-
-A-12.cmm
-Error type 12 at Line 63: Array index is not an integer.
-Error type 12 at Line 63: Array index is not an integer.
-
-A-13.cmm
-Error type 13 at Line 58: Illegal use of ".".
-Error type 13 at Line 58: Illegal use of ".".
-
-A-14.cmm
-Error type 14 at Line 34: Non-existent field "hight".
-Error type 5 at Line 34: Type mismatched for assignment.
-
-A-15.cmm
-Error type 15 at Line 2: illegal initialization.
-
-A-16.cmm
-Error type 16 at Line 32: Duplicated name "PersonInfo".
-
-A-17.cmm
-Error type 17 at Line 5: Undefined structure "PersonInfo".
-
-A-18.cmm
-Error type 7 at Line 13: Type mismatched for operands.
-1:Error type 9 at Line 13: Type mismatched for arguments.
-
-A-19.cmm
-Error type 12 at Line 13: Array index is not an integer.
-1:Error type 9 at Line 13: Type mismatched for arguments.
-
-A-1.cmm
-Error type 1 at Line 18: Undefined variable "p2_y".
-Error type 8 at Line 18: Type mismatched for return.
-
-A-20.cmm
-Error type 15 at Line 5: Redefined field "sia".
-
-A-2.cmm
-Error type 2 at Line 33: Undefined function "cos".
-Error type 7 at Line 33: Type mismatched for operands.
-Error type 8 at Line 33: Type mismatched for return.
-
-A-3.cmm
-6Error type 3 at Line 17: Redefined variable "size".
-
-A-4.cmm
-Error type 4 at Line 32: Redefined function "top".
-
-A-5.cmm
-Error type 5 at Line 9: Type mismatched for assignment.
-
-A-6.cmm
-Error type 6 at Line 33: The left-hand side of an assignment must be a variable.
-
-A-7.cmm
-Error type 7 at Line 35: Type mismatched for operands.
-Error type 5 at Line 35: Type mismatched for assignment.
-
-A-8.cmm
-Error type 8 at Line 29: Type mismatched for return.
-
-A-9.cmm
-1:Error type 9 at Line 49: Type mismatched for arguments.
-
-B-1.cmm
-Error type 15 at Line 3: illegal initialization.
-Error type 5 at Line 9: Type mismatched for assignment.
-Error type 8 at Line 12: Type mismatched for return.
-3:Error type 9 at Line 91: The number of arguments is wrong.
-Error type 11 at Line 94: "res" is not a function.
-Error type 5 at Line 94: Type mismatched for assignment.
-
-B-2.cmm
-Error type 14 at Line 8: Non-existent field "_x".
-Error type 7 at Line 17: Type mismatched for operands.
-Error type 5 at Line 17: Type mismatched for assignment.
-Error type 17 at Line 32: Undefined structure "Mass".
-
-C-1.cmm
-
-C-2.cmm
-
-D-1.cmm
-Error type B at Line 43: syntax error, unexpected SEMI, expecting LC.
-Error type B at Line 96: syntax error, unexpected SEMI, expecting LC.
-Error type B at Line 97: syntax error, unexpected SEMI, expecting LC.
-
-D-2.cmm
-
-D-3.cmm
-2:Error type 9 at Line 51: Type mismatched for arguments.
-Error type 8 at Line 54: Type mismatched for return.
-
-E-1.cmm
-Error type B at Line 43: syntax error, unexpected SEMI, expecting LC.
-Error type B at Line 68: syntax error, unexpected SEMI, expecting LC.
-Error type B at Line 70: syntax error, unexpected SEMI, expecting LC.
-
-E-2.cmm
-1Error type 3 at Line 109: Redefined variable "i".
-Error type 1 at Line 119: Undefined variable "i".
-Error type 8 at Line 119: Type mismatched for return.
-
-E-3.cmm
-2:Error type 9 at Line 51: Type mismatched for arguments.
-Error type 8 at Line 54: Type mismatched for return.
-1:Error type 9 at Line 73: Type mismatched for arguments.
-1:Error type 9 at Line 74: Type mismatched for arguments.
-
 extra3
 
 extra4
-1Error type 3 at Line 9: Redefined variable "i".
+Error type 3 at Line 9: Redefined variable "i".
 
 test1
 Error type 1 at Line 4: Undefined variable "j".
@@ -151,13 +36,13 @@ test2
 Error type 2 at Line 4: Undefined function "inc".
 
 test3
-1Error type 3 at Line 4: Redefined variable "i".
+Error type 3 at Line 4: Redefined variable "i".
 
 test4
-Error type 5 at Line 4: Type mismatched for assignment.
+Error type 4 at Line 6: Redefined function "func".
 
 test5
-Error type 4 at Line 6: Redefined function "func".
+Error type 5 at Line 4: Type mismatched for assignment.
 
 test6
 Error type 6 at Line 4: The left-hand side of an assignment must be a variable.
@@ -169,4 +54,107 @@ test8
 Error type 8 at Line 4: Type mismatched for return.
 
 test9
-3:Error type 9 at Line 8: The number of arguments is wrong.
+Error type 9 at Line 8: The number of arguments is wrong.
+
+testcase_1
+Error type 1 at Line 5: Undefined variable "j".
+
+testcase_10
+Error type 10 at Line 19: Illegal use of "[]"
+Error type 10 at Line 27: Illegal use of "[]"
+
+testcase_11
+Error type 11 at Line 10: "x" is not a function.
+Error type 7 at Line 10: Type mismatched for operands.
+Error type 8 at Line 10: Type mismatched for return.
+Error type 11 at Line 27: "i" is not a function.
+
+testcase_12
+Error type 12 at Line 24: Array index is not an integer.
+Error type 5 at Line 24: Type mismatched for assignment.
+Error type 12 at Line 27: Array index is not an integer.
+Error type 12 at Line 27: Array index is not an integer.
+Error type 5 at Line 27: Type mismatched for assignment.
+
+testcase_13
+Error type 13 at Line 23: Illegal use of ".".
+Error type 5 at Line 23: Type mismatched for assignment.
+Error type 13 at Line 31: Illegal use of ".".
+
+testcase_14
+Error type 14 at Line 18: Non-existent field "magnitude".
+Error type 14 at Line 33: Non-existent field "image".
+Error type 7 at Line 33: Type mismatched for operands.
+Error type 5 at Line 33: Type mismatched for assignment.
+
+testcase_15
+Error type 15 at Line 4: Redefined field "real".
+Error type 15 at Line 11: Redefined field "angle".
+Error type 15 at Line 12: illegal initialization.
+
+testcase_16
+Error type 16 at Line 22: Duplicated name "abs".
+
+testcase_17
+Error type 17 at Line 4: Undefined structure "Attribute".
+Error type 17 at Line 15: Undefined structure "Complex2".
+
+testcase_18
+Error type B at Line 6: syntax error, unexpected SEMI, expecting LC.
+Error type B at Line 7: syntax error, unexpected SEMI, expecting LC.
+Error type B at Line 14: syntax error, unexpected SEMI, expecting LC.
+Error type B at Line 33: syntax error, unexpected SEMI, expecting LC.
+Error type B at Line 34: syntax error, unexpected SEMI, expecting LC.
+
+testcase_19
+Error type B at Line 5: syntax error, unexpected SEMI, expecting LC.
+Error type B at Line 6: syntax error, unexpected SEMI, expecting LC.
+Error type B at Line 8: syntax error, unexpected SEMI, expecting LC.
+
+testcase_2
+Error type 2 at Line 4: Undefined function "inc".
+Error type 2 at Line 5: Undefined function "write".
+
+testcase_20
+Error type 5 at Line 33: Type mismatched for assignment.
+Error type 9 at Line 36: Type mismatched for arguments.
+Error type 9 at Line 36: Type mismatched for arguments.
+Error type 13 at Line 37: Illegal use of ".".
+
+testcase_21
+Error type 5 at Line 44: Type mismatched for assignment.
+Error type 5 at Line 45: Type mismatched for assignment.
+Error type 5 at Line 46: Type mismatched for assignment.
+
+testcase_3
+Error type 3 at Line 4: Redefined variable "j".
+
+testcase_4
+Error type 4 at Line 13: Redefined function "abs".
+
+testcase_5
+Error type 5 at Line 13: Type mismatched for assignment.
+Error type 5 at Line 18: Type mismatched for assignment.
+
+testcase_6
+Error type 6 at Line 16: The left-hand side of an assignment must be a variable.
+Error type 6 at Line 19: The left-hand side of an assignment must be a variable.
+Error type 6 at Line 21: The left-hand side of an assignment must be a variable.
+
+testcase_7
+Error type 7 at Line 18: Type mismatched for operands.
+Error type 7 at Line 21: Type mismatched for operands.
+Error type 7 at Line 23: Type mismatched for operands.
+
+testcase_8
+Error type 8 at Line 5: Type mismatched for return.
+Error type 8 at Line 24: Type mismatched for return.
+
+testcase_9
+Error type 9 at Line 20: The number of arguments is wrong.
+Error type 5 at Line 20: Type mismatched for assignment.
+Error type 9 at Line 22: The number of arguments is wrong.
+Error type 5 at Line 22: Type mismatched for assignment.
+Error type 9 at Line 24: Type mismatched for arguments.
+Error type 7 at Line 24: Type mismatched for operands.
+Error type 5 at Line 24: Type mismatched for assignment.
