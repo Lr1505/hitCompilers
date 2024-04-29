@@ -9,6 +9,6 @@ add_executable(C__complier
         lab1/main.c
         lab1/tree.c
         lab2/hash.c
-        newlab2/symtab.c
-        newlab2/tree.h
-        newlab2/semantic.c)
+        lab2/symtab.c
+        lab2/tree.h
+        lab2/semantic.c)

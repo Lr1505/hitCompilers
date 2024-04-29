@@ -21,7 +21,6 @@ struct Symbol_table_item * Dec_in_structure(Node node, Type type)
         printf("Error type 15 at Line %d: illegal initialization.\n",node->line);
         //结构体变量不允许初始化
     }
-
     return p;
 }
 
