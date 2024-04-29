@@ -541,7 +541,7 @@ struct Symbol_table_item *Dec(Node node, Type type)
         Type exp_type = Exp(child_3);
         if(check_type(p->f->type, exp_type)==0) {
             if (node->line == semantic_line)
-                printf("2:Error type 5 at Line %d: Type mismatched for assignment.\n", node->line);
+                printf("Error type 5 at Line %d: Type mismatched for assignment.\n", node->line);
 
         }
         //判断Exp和VarDec类型相等
