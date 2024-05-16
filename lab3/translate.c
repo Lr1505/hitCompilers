@@ -915,9 +915,9 @@ void translate_Cond(Node node, Operand label_true, Operand label_false)
         Operand label1 = new_label();
         translate_Cond(node->child, label_true, label1);
         create_one_intercode(label1, IR_LABEL);
-        printf("OR:%s\n",node->child->bro->bro->child->data.var_ID);
+        //printf("OR:%s\n",node->child->bro->bro->child->data.var_ID);
         translate_Cond(node->child->bro->bro, label_true, label_false);
-        printf("OR:return\n");
+        //printf("OR:return\n");
     }
     else
     {
