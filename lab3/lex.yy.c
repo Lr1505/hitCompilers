@@ -924,62 +924,62 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 86 "./lexical.l"
-{ add_token_node("SEMI", OTHER, NULL);return (SEMI); }
+{ add_token_node("SEMI", OTHER, yytext);return (SEMI); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 87 "./lexical.l"
-{ add_token_node("COMMA", OTHER, NULL);return (COMMA); }
+{ add_token_node("COMMA", OTHER, yytext);return (COMMA); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 88 "./lexical.l"
-{ add_token_node("RELOP", OTHER, NULL);return (RELOP); }
+{ add_token_node("RELOP", OTHER, yytext);return (RELOP); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 89 "./lexical.l"
-{ add_token_node("ASSIGNOP", OTHER, NULL);return (ASSIGNOP); }
+{ add_token_node("ASSIGNOP", OTHER, yytext);return (ASSIGNOP); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 90 "./lexical.l"
-{ add_token_node("PLUS", OTHER, NULL);return (PLUS); }
+{ add_token_node("PLUS", OTHER, yytext);return (PLUS); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 91 "./lexical.l"
-{ add_token_node("MINUS", OTHER, NULL);return (MINUS); }
+{ add_token_node("MINUS", OTHER, yytext);return (MINUS); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 92 "./lexical.l"
-{ add_token_node("STAR", OTHER, NULL); return (STAR); }
+{ add_token_node("STAR", OTHER, yytext); return (STAR); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 93 "./lexical.l"
-{ add_token_node("DIV", OTHER, NULL); return (DIV);}
+{ add_token_node("DIV", OTHER, yytext); return (DIV);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 94 "./lexical.l"
-{ add_token_node("AND", OTHER, NULL);return (AND); }
+{ add_token_node("AND", OTHER, yytext);return (AND); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 95 "./lexical.l"
-{ add_token_node("OR", OTHER, NULL);return (OR); }
+{ add_token_node("OR", OTHER, yytext);return (OR); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 96 "./lexical.l"
-{ add_token_node("DOT", OTHER, NULL);return (DOT); }
+{ add_token_node("DOT", OTHER, yytext);return (DOT); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 97 "./lexical.l"
-{ add_token_node("NOT", OTHER, NULL);return (NOT); }
+{ add_token_node("NOT", OTHER, yytext);return (NOT); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
@@ -989,57 +989,57 @@ YY_RULE_SETUP
 case 19:
 YY_RULE_SETUP
 #line 99 "./lexical.l"
-{ add_token_node("LP", OTHER, NULL);return (LP); }
+{ add_token_node("LP", OTHER, yytext);return (LP); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 100 "./lexical.l"
-{ add_token_node("RP", OTHER, NULL);return (RP); }
+{ add_token_node("RP", OTHER, yytext);return (RP); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 101 "./lexical.l"
-{ add_token_node("LB", OTHER, NULL);return (LB); }
+{ add_token_node("LB", OTHER, yytext);return (LB); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 102 "./lexical.l"
-{ add_token_node("RB", OTHER, NULL);return (RB); }
+{ add_token_node("RB", OTHER, yytext);return (RB); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 103 "./lexical.l"
-{ add_token_node("LC", OTHER, NULL);return (LC); }
+{ add_token_node("LC", OTHER, yytext);return (LC); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 104 "./lexical.l"
-{ add_token_node("RC", OTHER, NULL);return (RC); }
+{ add_token_node("RC", OTHER, yytext);return (RC); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 105 "./lexical.l"
-{ add_token_node("STRUCT", OTHER, NULL);return (STRUCT); }
+{ add_token_node("STRUCT", OTHER, yytext);return (STRUCT); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 106 "./lexical.l"
-{ add_token_node("RETURN", OTHER, NULL);return (RETURN); }
+{ add_token_node("RETURN", OTHER, yytext);return (RETURN); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 107 "./lexical.l"
-{ add_token_node("IF", OTHER, NULL);return (IF); }
+{ add_token_node("IF", OTHER, yytext);return (IF); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 108 "./lexical.l"
-{ add_token_node("ELSE", OTHER, NULL);return (ELSE); }
+{ add_token_node("ELSE", OTHER, yytext);return (ELSE); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 109 "./lexical.l"
-{ add_token_node("WHILE", OTHER, NULL);return (WHILE); }
+{ add_token_node("WHILE", OTHER, yytext);return (WHILE); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP

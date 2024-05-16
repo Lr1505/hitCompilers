@@ -11,6 +11,51 @@ extern struct Symbol_table_item *struct_table[HASH_TABLE_SIZE] ;
 extern struct Symbol_table_item *stack[STACK_DEEP] ;
 extern struct Symbol_table_item *cur_depth_symbol[STACK_DEEP] ;
 
+//初始化符号表：添加read、write函数
+//其中read函数没有任何参数,返回值为int型(即读入的整数值),write
+//函数包含一个int类型的参数(即要输出的整数值),返回值也为int型(固定返回0)。
+void init_table()
+{
+    Type spe_type = (Type)malloc(sizeof(struct Type_));
+    spe_type->kind=BASIC;
+    spe_type->u.basic=VAR_INT;
+    //添加read函数
+    struct Symbol_table_item *p = (struct Symbol_table_item *)malloc(sizeof(struct Symbol_table_item));
+    p->next_hash_item = NULL;
+    p->next_symbol = NULL;
+    p->symbol_depth = cur_stack_deep;
+    p->f = (FieldList)malloc(sizeof(struct FieldList_));
+    p->f->name="read";
+
+    Type t = (Type)malloc(sizeof(struct Type_));
+    t->kind = FUNCTION;
+    t->u.function.funcType = spe_type;
+    t->u.function.paramNum=0;
+    t->u.function.params=NULL;
+    p->f->type=t;
+    add_s_table(p);
+    //添加write函数
+    struct Symbol_table_item *p2 = (struct Symbol_table_item *)malloc(sizeof(struct Symbol_table_item));
+    p2->next_hash_item = NULL;
+    p2->next_symbol = NULL;
+    p2->symbol_depth = cur_stack_deep;
+    p2->f = (FieldList)malloc(sizeof(struct FieldList_));
+    p2->f->name="write";
+
+    Type t2 = (Type)malloc(sizeof(struct Type_));
+    t2->kind = FUNCTION;
+    t2->u.function.funcType = spe_type;
+    t2->u.function.paramNum=1;
+    t2->u.function.params=(FieldList)malloc(sizeof(struct FieldList_));
+
+    t2->u.function.params->name="params1";
+    t2->u.function.params->type=(Type)malloc(sizeof(struct Type_));
+    t2->u.function.params->type->kind=BASIC;
+    t2->u.function.params->type->u.basic=VAR_INT;
+    p2->f->type=t2;
+    add_s_table(p2);
+}
+
 struct Symbol_table_item * Dec_in_structure(Node node, Type type)
 {
     Node child_1 = node->child;//VarDec
@@ -651,7 +696,7 @@ void CompSt(Node node, Type function_type)
     //printf("[Compst]\n");
     Node CompSt_child_1 = node->child;//LC
     cur_stack_deep++;
-    print_hash_table();
+    //print_hash_table();
     Node CompSt_child_2 = CompSt_child_1->bro;//DefList
     Node CompSt_child_3 = CompSt_child_2->bro;//StmtList
     if(strcmp(CompSt_child_2->name,"DefList")==0)//DefList不为空
@@ -690,19 +735,19 @@ void CompSt(Node node, Type function_type)
         Stmt(CompSt_child_3->child, function_type);
         CompSt_child_3 = CompSt_child_3->child->bro;
     }
-
+    //print_hash_table();
     //退出大括号，删除该作用域的全部符号
-    struct Symbol_table_item *temp = stack[cur_stack_deep];
-
-    while(temp != NULL)
-    {
-        struct Symbol_table_item *t = temp;
-        temp = temp->next_symbol;
-        del_s_table(t);
-    }
-
-    stack[cur_stack_deep] = NULL;
-    cur_stack_deep--;
+//    struct Symbol_table_item *temp = stack[cur_stack_deep];
+//
+//    while(temp != NULL)
+//    {
+//        struct Symbol_table_item *t = temp;
+//        temp = temp->next_symbol;
+//        del_s_table(t);
+//    }
+//
+//    stack[cur_stack_deep] = NULL;
+//    cur_stack_deep--;
 }
 
 

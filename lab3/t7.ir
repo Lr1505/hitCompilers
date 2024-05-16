@@ -1,0 +1,149 @@
+FUNCTION sort :
+PARAM n
+DEC a 800
+i := #0
+j := #0
+LABEL label1 :
+IF i < n GOTO label2
+GOTO label3
+LABEL label2 :
+t4 := i * #8
+t5 := &a
+t2 := t5 + t4
+value := t2 + #0
+t10 := #0 - i
+t8 := t10 * i
+t9 := #20 * i
+t6 := t8 + t9
+t5 := t6 - #50
+*value := t5
+t13 := i * #8
+t14 := &a
+t11 := t14 + t13
+index := t11 + #4
+*index := i
+t14 := i + #1
+i := t14
+GOTO label1
+LABEL label3 :
+i := #0
+LABEL label4 :
+IF i < n GOTO label5
+GOTO label6
+LABEL label5 :
+j := #0
+LABEL label7 :
+IF j < i GOTO label8
+GOTO label9
+LABEL label8 :
+t19 := i * #8
+t20 := &a
+t17 := t20 + t19
+value := t17 + #0
+t22 := j * #8
+t23 := &a
+t20 := t23 + t22
+value := t20 + #0
+t23 := *value
+t24 := *value
+IF t23 < t24 GOTO label10
+GOTO label11
+LABEL label10 :
+DEC t 8
+t26 := &t
+value := t26 + #0
+t30 := i * #8
+t31 := &a
+t28 := t31 + t30
+value := t28 + #0
+t31 := *value
+*value := t31
+t33 := &t
+index := t33 + #4
+t37 := i * #8
+t38 := &a
+t35 := t38 + t37
+index := t35 + #4
+t38 := *index
+*index := t38
+t42 := i * #8
+t43 := &a
+t40 := t43 + t42
+value := t40 + #0
+t46 := j * #8
+t47 := &a
+t44 := t47 + t46
+value := t44 + #0
+t47 := *value
+*value := t47
+t51 := i * #8
+t52 := &a
+t49 := t52 + t51
+index := t49 + #4
+t55 := j * #8
+t56 := &a
+t53 := t56 + t55
+index := t53 + #4
+t56 := *index
+*index := t56
+t60 := j * #8
+t61 := &a
+t58 := t61 + t60
+value := t58 + #0
+t62 := &t
+value := t62 + #0
+t63 := *value
+*value := t63
+t67 := j * #8
+t68 := &a
+t65 := t68 + t67
+index := t65 + #4
+t69 := &t
+index := t69 + #4
+t70 := *index
+*index := t70
+LABEL label11 :
+t71 := j + #1
+j := t71
+GOTO label7
+LABEL label9 :
+t72 := i + #1
+i := t72
+GOTO label4
+LABEL label6 :
+i := #0
+LABEL label12 :
+IF i < n GOTO label13
+GOTO label14
+LABEL label13 :
+t76 := i * #8
+t77 := &a
+t74 := t77 + t76
+value := t74 + #0
+t77 := *value
+WRITE t77
+t81 := i * #8
+t82 := &a
+t79 := t82 + t81
+index := t79 + #4
+t82 := *index
+WRITE t82
+t83 := i + #1
+i := t83
+GOTO label12
+LABEL label14 :
+RETURN #0
+FUNCTION main :
+READ t84
+m := t84
+IF m >= #100 GOTO label15
+GOTO label16
+LABEL label15 :
+t85 := #0 - #1
+WRITE t85
+GOTO label17
+LABEL label16 :
+ARG m
+t86 := CALL sort
+LABEL label17 :
+RETURN #0

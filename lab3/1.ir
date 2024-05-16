@@ -1,0 +1,67 @@
+FUNCTION main :
+a := #3
+b := #4
+t1 := a * a
+t2 := b * b
+t0 := t1 + t2
+c := t0
+WRITE c
+t3 := a + c
+t2 := t3 / b
+c := t2
+WRITE c
+t3 := a + b
+a := t3
+t3 := a - b
+b := t3
+t3 := a - b
+a := t3
+t3 := #0
+t4 := #0
+IF a > b GOTO label4
+GOTO label5
+LABEL label4 :
+t4 := #1
+LABEL label5 :
+IF t4 != #0 GOTO label1
+GOTO label3
+LABEL label3 :
+t5 := #0
+IF b <= c GOTO label6
+GOTO label7
+LABEL label6 :
+t5 := #1
+LABEL label7 :
+IF t5 != #0 GOTO label1
+GOTO label2
+LABEL label1 :
+t3 := #1
+LABEL label2 :
+c := t3
+t6 := #0
+t8 := #0
+IF b == c GOTO label10
+GOTO label11
+LABEL label10 :
+t8 := #1
+LABEL label11 :
+IF t8 < #12 GOTO label8
+GOTO label9
+LABEL label8 :
+t6 := #1
+LABEL label9 :
+t9 := #0
+IF b >= c GOTO label12
+GOTO label13
+LABEL label12 :
+t9 := #1
+LABEL label13 :
+t12 := #3 + b
+t10 := #2 * t12
+t7 := t9 * t10
+t5 := t6 + t7
+b := t5
+WRITE a
+WRITE b
+RETURN #0
+WRITE c

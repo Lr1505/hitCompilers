@@ -64,6 +64,7 @@ struct node* token_node(const char* name, enum DATATYPE datatype,const char* val
             break;
         default:
             break;
+
     }
     return mnode;
 }

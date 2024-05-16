@@ -1,6 +1,7 @@
 //
 // Created by LR0515 on 24-4-2.
 //
+#include <string.h>
 #include "tree.h"
 void print_tree(struct node* mnode, int depth)  // 打印AST，depth表示深度
 {
@@ -41,6 +42,7 @@ struct node* token_node(const char* name, enum DATATYPE datatype,const char* val
     mnode->child = NULL;
     mnode->datatype = datatype;
     sscanf(name, "%s", mnode->name);
+    //printf("%s\n",name);
     switch (mnode->datatype) {
         case TYPE_ID:
             sscanf(val, "%s", mnode->data.var_ID);

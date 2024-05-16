@@ -1,0 +1,105 @@
+------------------
+FUNCTION main :
+a := #3
+b := #4
+i := #0
+sum := #0
+DEC array 600
+t1 := a * a
+d := t1
+t2 := b * b
+e := t2
+t3 := #0 - #1
+IF t3 != #0 GOTO label1
+GOTO label3
+LABEL label3 :
+t4 := d + e
+IF t4 > #0 GOTO label1
+GOTO label2
+LABEL label1 :
+t10 := a * a
+t11 := b * b
+t8 := t10 - t11
+t9 := d * e
+t6 := t8 + t9
+t7 := a - #8
+t5 := t6 / t7
+i := t5
+LABEL label2 :
+t20 := #1 + #2
+t19 := a * t20
+t16 := #7 - t19
+t23 := #10 - #1
+t20 := #36 / t23
+t17 := t20 * b
+t14 := t16 - t17
+t15 := d * e
+t13 := t14 + t15
+t12 := #0 - t13
+c := t12
+t22 := c - c
+i := t22
+------------------
+FUNCTION main :
+a := #3
+b := #4
+i := #0
+sum := #0
+DEC array 600
+t1 := a * a
+d := t1
+t2 := b * b
+e := t2
+t3 := #0 - #1
+IF t3 != #0 GOTO label1
+GOTO label3
+LABEL label3 :
+t4 := d + e
+IF t4 > #0 GOTO label1
+GOTO label2
+LABEL label1 :
+t10 := a * a
+t11 := b * b
+t8 := t10 - t11
+t9 := d * e
+t6 := t8 + t9
+t7 := a - #8
+t5 := t6 / t7
+i := t5
+LABEL label2 :
+t20 := #1 + #2
+t19 := a * t20
+t16 := #7 - t19
+t23 := #10 - #1
+t20 := #36 / t23
+t17 := t20 * b
+t14 := t16 - t17
+t15 := d * e
+t13 := t14 + t15
+t12 := #0 - t13
+c := t12
+t22 := c - c
+i := t22
+LABEL label4 :
+t24 := #100 + #50
+IF i < t24 GOTO label5
+GOTO label6
+LABEL label5 :
+t26 := i * #4
+t27 := &array
+t24 := t27 + t26
+*t24 := #1
+t27 := i + #1
+i := t27
+GOTO label4
+LABEL label6 :
+t36 := #0 * #4
+t37 := &array
+t33 := t37 + t36
+t36 := *t33
+t31 := t36 + d
+t29 := t31 - #1
+t28 := t29 - d
+i := t28
+------------------
+
