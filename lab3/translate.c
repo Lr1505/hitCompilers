@@ -486,7 +486,7 @@ void translate_Exp(Node exp, Operand place)
     }
         //Exp -> Exp ASSIGNOP Exp
     else if(strcmp(exp->child->name, "Exp")==0 && strcmp(exp->child->bro->name, "ASSIGNOP")==0)
-    {   //todo? bug
+    {
         //不考虑结构体和数组
         /*Operand exp1 = (Operand)malloc(sizeof(struct Operand_));
         exp1->kind = OP_VARIABLE;
@@ -565,7 +565,7 @@ void translate_Exp(Node exp, Operand place)
         create_three_intercode(place, t2, t1, IR_SUB);
     }
     else if(strcmp(exp->child->name, "NOT")==0 || (strcmp(exp->child->name, "Exp")==0 && strcmp(exp->child->bro->name, "RELOP")==0)||(strcmp(exp->child->name, "Exp")==0 && strcmp(exp->child->bro->name, "AND")==0)||(strcmp(exp->child->name, "Exp")==0 && strcmp(exp->child->bro->name, "OR")==0))
-    {//todo? bug
+    {
         Operand label1 = new_label();
         Operand label2 = new_label();
         //printf("1%s\n",exp->child->name);
@@ -614,7 +614,7 @@ void translate_Exp(Node exp, Operand place)
             struct Arg_list *arg_list = NULL;
             struct Arg_list **arg_list_p = &arg_list;
             translate_Args(exp->child->bro->bro, arg_list_p);
-            if(strcmp(exp->child->data.var_ID, "write")==0)//todo?
+            if(strcmp(exp->child->data.var_ID, "write")==0)
             {
                 create_one_intercode(arg_list->op, IR_WRITE);
             }
