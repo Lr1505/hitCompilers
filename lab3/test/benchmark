@@ -17,7 +17,7 @@ int main()
 		i = i + 1;
 	}
 	
-	i = array[i] + d - 1 - d;
+	i = array[0] + d - 1 - d;
 
 	while (i < -1 * (c - b * b + a * a))
 	{
